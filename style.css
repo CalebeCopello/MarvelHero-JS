@@ -44,3 +44,18 @@ body{
 .marvelDisplayContainer {
     padding: 1em;
 }
+.marvelCharacterImageContainer {
+    background-color: white;
+    padding: 1em;
+    height: 10em;
+    width: 10em;
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+}
+.marvelCharacterImageContainer img{
+    width: 100%;
+    position: relative;
+    width: block;
+    border-radius: 50%;
+}
