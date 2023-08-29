@@ -74,4 +74,16 @@ body{
 }
 .marvelList {
     position: absolute;
+    width: 63%;
+    background-color: grey;
+    color: white;
+    overflow-y: scroll;
+    z-index: 1;
+}
+.marvelAutoCompleteItems {
+    padding: 0.5em;
+}
+.marvelAutoCompleteItems:hover {
+    background-color: white;
+    color: black;
 }
