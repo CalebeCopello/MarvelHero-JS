@@ -6,9 +6,19 @@
     <meta name="author" content="Calebe Copello">
     <meta name="keywords" content="Marvel, Heroes">
     <meta name="description" content="Uma aplicação web para procura de heroes da Marvel">
+    <link rel="stylesheet" href="./style.css">
     <title>Marvel Hero Finder</title>
 </head>
 <body>
-    
+    <div class="marvelHeroContainer">
+        <div class="marvelInputHeroContainer">
+            <input type="text" class="marvelInputBox" placeholder="Spider-Man" id="marvelInputBox" value="Spider-Man" >
+            <button class="marvelButton" id="marvelButton">Procurar</button>
+            <div class="marvelList" id="marvelList"></div>
+            <div class="marvelDisplayContainer" id="marvelDisplayContainer"></div>
+        </div>
+    </div>
+    <script src="./marvelApiData.js"></script>
+    <script src="./marvelScript.js"></script>
 </body>
 </html>
