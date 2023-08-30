@@ -82,8 +82,7 @@ BUTTON.addEventListener(
             <div class='marvelComicsDisplay${i}'>
             ${JSONDATAFIRSTCOMIC.data.results[i].title}
             ${JSONDATAFIRSTCOMIC.data.results[i].description}
-            ${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}
-            ${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}
+            <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" />
             </div>
             `
         }
