@@ -87,3 +87,11 @@ body{
     background-color: white;
     color: black;
 }
+.marvelComicsContainer{
+    padding: 1em;
+}
+.marvelComicsDisplay0, .marvelComicsDisplay1,.marvelComicsDisplay2{
+    display: inline-block;
+    background-color: antiquewhite;
+    margin: 10px;
+}
