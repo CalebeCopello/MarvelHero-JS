@@ -84,16 +84,46 @@
             background-color: gray;
             margin: 5px;
             transition: transform 0.2s ease-in-out;
+            perspective: 1000px;/* flip, make it 3d*/
         }
-        .comic1:hover,
-        .comic2:hover,
-        .comic3:hover {
-            transform: scale(1.05);
+        .comic1Inner,
+        .comic2Inner,
+        .comic3Inner{
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
-        .comic1:active,
-        .comic2:active,
-        .comic3:active {
-            transform: scale(1.05);
+        .comic1Front,
+        .comic2Front,
+        .comic3Front{
+            background-color: #bbb;
+        }
+        .comic1:hover .comic1Inner,
+        .comic2:hover .comic2Inner,
+        .comic3:hover .comic3Inner{
+            transform: rotateY(180deg);
+        }
+        .comic1:active .comic1Inner,
+        .comic2:active .comic2Inner,
+        .comic3:active .comic3Inner{
+            transform: rotateY(180deg);
+        }
+        .comic1Front, .comic1Back, 
+        .comic2Front, .comic2Back, 
+        .comic3Front, .comic3Back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;  
+        }
+        .comic1Back,
+        .comic2Back,
+        .comic3Back{
+            background-color: rgba(0, 0, 0, 0.75);
+            color: white;
+            transform: rotateY(180deg);
         }
         @media only screen and (max-width: 630px) {
             .container{
@@ -128,7 +158,7 @@
             .comic2,
             .comic3 {
                 margin: 5px auto;;
-                width: 45%;
+                width: 60%;
                 height: 218px;
             }
         } 
@@ -148,9 +178,36 @@
             </div>
         </div>
         <div class="comicscontainer">
-            <div class="comic1">1</div>
-            <div class="comic2">2</div>
-            <div class="comic3">3</div>
+            <div class="comic1">
+                <div class="comic1Inner">
+                    <div class="comic1Front">
+                        front comic 1
+                    </div>
+                    <div class="comic1Back">
+                        back comic 1
+                    </div>
+                </div>
+            </div>
+            <div class="comic2">
+                <div class="comic2Inner">
+                    <div class="comic2Front">
+                        front comic 2
+                    </div>
+                    <div class="comic2Back">
+                        back comic 2
+                    </div>
+                </div>
+            </div>
+            <div class="comic3">
+                <div class="comic3Inner">
+                    <div class="comic3Front">
+                        front comic 3
+                    </div>
+                    <div class="comic3Back">
+                        back comic 3
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

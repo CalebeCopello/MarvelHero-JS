@@ -85,6 +85,7 @@ BUTTON.addEventListener(
             `
         })
         // console.log(Object.keys(JSONDATAFIRSTCOMIC.data.results).length)
+        
         MARVELCOMICSCONTAINER.innerHTML = ''
         for(i = 0; i < Object.keys(JSONDATAFIRSTCOMIC.data.results).length; i++) {
             MARVELCOMICSCONTAINER.innerHTML += `
