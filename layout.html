@@ -30,7 +30,7 @@
             display: block;
             float: left;
             height: 30px;
-            width: 520px;
+            width: 80%;
             margin: 5px;
             background-color: grey;
         }
@@ -38,17 +38,20 @@
             display: block;
             float: right;
             height: 30px;
-            width: 30px;
+            width: 15%;
             margin: 5px;
             background-color: grey;
         }
         .herocontainer{
+            display: flex;
+            gap: 15px;
             height: 250px;
             background-color: orange;
             margin: 5px;
         }
         .heroimgdesccontainer{
             height: 93%;
+            width: 98%;
             background-color: greenyellow;
             padding: 3px;
             margin: 5px;
@@ -56,14 +59,14 @@
         .heroinfo{
             display: block;
             float: left;
-            width: 58%;
+            width: 65%;
             height: 99%;
             background-color: orange;
         }
         .heroimg{
             display: block;
             float: right;
-            width: 38%;
+            width: 30%;
             height: 99%;
             background-color: orange;
         }
@@ -80,10 +83,54 @@
             width: 30%;
             background-color: gray;
             margin: 5px;
+            transition: transform 0.2s ease-in-out;
         }
+        .comic1:hover,
+        .comic2:hover,
+        .comic3:hover {
+            transform: scale(1.05);
+        }
+        @media only screen and (max-width: 630px) {
+            .container{
+            width: 300px;
+            height: 1500px;
+            }
+            .searchcontainer{
+                height: 60px;
+            }
+            .searchbox, .searchbtn{
+                width: 90%;
+                height: 20px;
+                float: none;
+            }
+            .herocontainer{
+                height: 45%;
+            }
+            .heroimgdesccontainer{
+                height: 94%;
+                flex-direction: column;
+            }
+            .heroinfo, .heroimg{
+                width: 96%;
+                height: 47%;
+                margin: 5px;
+            }
+            .comicscontainer{
+                flex-direction: column;
+                height: 48%;
+            }
+            .comic1,
+            .comic2,
+            .comic3 {
+                margin: 5px auto;;
+                width: 45%;
+                height: 215px;
+            }
+        } 
     </style>
 </head>
 <body>
+    <div id="screenSizeDisplay"></div>
     <div class="container" id="container">
         <div class="searchcontainer" id="searchcontainer">
             <div class="searchbox"></div>
@@ -91,8 +138,8 @@
         </div>
         <div class="herocontainer">
             <div class="heroimgdesccontainer">
-                <div class="heroinfo"></div>
                 <div class="heroimg"></div>
+                <div class="heroinfo"></div>
             </div>
         </div>
         <div class="comicscontainer">
@@ -101,5 +148,17 @@
             <div class="comic3">3</div>
         </div>
     </div>
+
+    <script>
+        function displayScreenSize() {
+            const screenSizeDisplay = document.getElementById('screenSizeDisplay');
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+
+            screenSizeDisplay.textContent = `Screen Size: ${width}px (width) x ${height}px (height)`;
+        }
+        displayScreenSize();
+        window.addEventListener('resize', displayScreenSize);
+    </script>
 </body>
 </html>
