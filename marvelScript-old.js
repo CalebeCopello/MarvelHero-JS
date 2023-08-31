@@ -3,7 +3,7 @@ const BUTTON = document.getElementById('marvelButton')
 const MARVELDISPLAYCONTAINER = document.getElementById('marvelDisplayContainer')
 const MARVELCARDCONTAINER = document.getElementById('marvelCardContainer')
 const MARVELCOMICSCONTAINER = document.getElementById('marvelComicsContainer')
-const MARVELSEARCHLIST = document.getElementById('marvelSearchList')
+const MARVELLIST = document.getElementById('marvelList')
 const TIMESTAMP = '1693330665170'
 const PUBLICKEY = '691b8c03ff6ba103c4ceecb6814e6c07'
 const HASHVALUE = '8ca2582c55219e5864e4448bc9922299'
@@ -14,42 +14,42 @@ function displayWords(value) {
 }
 
 function removeElements() {
-    const autocompleteItems = document.querySelectorAll('.marvelAutoCompleteItems')
+    const autocompleteItems = document.querySelectorAll('.marvelAutoCompleteItems');
     autocompleteItems.forEach((item) => {
-        item.remove()
-    })
+        item.remove();
+    });
 }
-let debounceTimeout
+let debounceTimeout;
 
 INPUT.addEventListener('input', () => {
-    clearTimeout(debounceTimeout)
+    clearTimeout(debounceTimeout);
     
     debounceTimeout = setTimeout(async () => {
-        removeElements()
+        removeElements();
         
-        if (INPUT.value.length < 3) {
-            return
+        if (INPUT.value.length < 4) {
+            return;
         }
         
-        const URL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
-        const RESPONSE = await fetch(URL)
-        const JSONDATA = await RESPONSE.json()
+        const URL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`;
+        const RESPONSE = await fetch(URL);
+        const JSONDATA = await RESPONSE.json();
 
         JSONDATA.data['results'].forEach((r) => {
-            let name = r.name
-            let div = document.createElement('div')
-            div.style.cursor = 'pointer'
-            div.classList.add('marvelAutoCompleteItems')
-            div.setAttribute('onclick', 'displayWords("' + name + '")')
-            let word = '<strong>' + name.substr(0, INPUT.value.length) + '</strong>'
-            word += name.substr(INPUT.value.length)
+            let name = r.name;
+            let div = document.createElement('div');
+            div.style.cursor = 'pointer';
+            div.classList.add('marvelAutoCompleteItems');
+            div.setAttribute('onclick', 'displayWords("' + name + '")');
+            let word = '<strong>' + name.substr(0, INPUT.value.length) + '</strong>';
+            word += name.substr(INPUT.value.length);
             div.innerHTML = `
-                <p class='marvelSearchItem'>${word}</p>
-            `
-            MARVELSEARCHLIST.appendChild(div)
-        })
-    }, 300)
-})
+                <p class='marvelItem'>${word}</p>
+            `;
+            MARVELLIST.appendChild(div);
+        });
+    }, 300);
+});
 
 BUTTON.addEventListener(
     'click',
@@ -61,6 +61,7 @@ BUTTON.addEventListener(
         let url = `https://gateway.marvel.com:443/v1/public/characters?name=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
         let response = await fetch(url)
         const JSONDATACHAR = await response.json()
+
 
         const ID = JSONDATACHAR.data.results[0].id
         url = `https://gateway.marvel.com:443/v1/public/characters/${ID}/comics?dateRange=1900-01-01%2C2013-01-02&orderBy=onsaleDate&limit=3&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`

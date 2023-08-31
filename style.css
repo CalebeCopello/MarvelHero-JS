@@ -1,5 +1,8 @@
 *{
     /* border: 1px dashed black; */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 body{
     background-color:peachpuff;
@@ -12,6 +15,7 @@ body{
     background-color: aquamarine;
     width: 600px;
     height: 620px;
+    top: 1em;
 }
 .marvelInputHeroContainer{
     background-color: orange;
@@ -36,6 +40,21 @@ body{
     width: 15%;
     margin: 5px;
     background-color: grey;
+}
+.marvelSearchList {
+    position: absolute;
+    width: 63%;
+    background-color: grey;
+    color: white;
+    overflow-y: scroll;
+    z-index: 1;
+}
+.marvelAutoCompleteItems {
+    padding: 0.5em;
+}
+.marvelAutoCompleteItems:hover {
+    background-color: white;
+    color: black;
 }
 .marvelDisplayContainer{
     display: flex;
