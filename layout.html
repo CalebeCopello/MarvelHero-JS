@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            border: 1px dashed black;
+        }
+        body{
+            background-color:peachpuff;
+        }
+        .container{
+            padding: 5px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+            background-color: aquamarine;
+            width: 600px;
+            height: 620px;
+        }
+        .searchcontainer{
+            background-color: orange;
+            height: 40px;
+            margin: 5px;
+            padding: 3px;
+        }
+        .searchbox{
+            display: block;
+            float: left;
+            height: 30px;
+            width: 520px;
+            margin: 5px;
+            background-color: grey;
+        }
+        .searchbtn{
+            display: block;
+            float: right;
+            height: 30px;
+            width: 30px;
+            margin: 5px;
+            background-color: grey;
+        }
+        .herocontainer{
+            height: 250px;
+            background-color: orange;
+            margin: 5px;
+        }
+        .heroimgdesccontainer{
+            height: 93%;
+            background-color: greenyellow;
+            padding: 3px;
+            margin: 5px;
+        }
+        .heroinfo{
+            display: block;
+            float: left;
+            width: 58%;
+            height: 99%;
+            background-color: orange;
+        }
+        .heroimg{
+            display: block;
+            float: right;
+            width: 38%;
+            height: 99%;
+            background-color: orange;
+        }
+        .comicscontainer{
+            display: flex;
+            gap: 15px;
+            height: 300px;
+            margin: 5px;
+            background-color: orange;
+        }
+        .comic1,
+        .comic2,
+        .comic3 {
+            width: 30%;
+            background-color: gray;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="container">
+        <div class="searchcontainer" id="searchcontainer">
+            <div class="searchbox"></div>
+            <div class="searchbtn"></div>
+        </div>
+        <div class="herocontainer">
+            <div class="heroimgdesccontainer">
+                <div class="heroinfo"></div>
+                <div class="heroimg"></div>
+            </div>
+        </div>
+        <div class="comicscontainer">
+            <div class="comic1">1</div>
+            <div class="comic2">2</div>
+            <div class="comic3">3</div>
+        </div>
+    </div>
+</body>
+</html>
