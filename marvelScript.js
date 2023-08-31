@@ -14,33 +14,42 @@ function displayWords(value) {
 }
 
 function removeElements() {
-    MARVELLIST.innerHTML = ''
+    const autocompleteItems = document.querySelectorAll('.marvelAutoCompleteItems');
+    autocompleteItems.forEach((item) => {
+        item.remove();
+    });
 }
+let debounceTimeout;
 
-INPUT.addEventListener(
-    'input', 
-    async() => {
-    removeElements()
-    if(INPUT.value.length < 4) {
-        return false
-    }
-    const URL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
-    const RESPONSE = await fetch(URL)
-    const JSONDATA = await RESPONSE.json()
-    JSONDATA.data['results'].forEach((r) => {
-        let name = r.name
-        let div = document.createElement('div')
-        div.style.cursor = 'pointer'
-        div.classList.add('marvelAutoCompleteItems')
-        div.setAttribute('onclick','displayWords("'+ name +'")')
-        let word = '<strong>' + name.substr(0,INPUT.value.length) +'</strong>'
-        word += name.substr(INPUT.value.length)
-        div.innerHTML = `
-        <p class='marvelItem'>${word}</p>
-        `
-        MARVELLIST.appendChild(div)
-    })
-})
+INPUT.addEventListener('input', () => {
+    clearTimeout(debounceTimeout);
+    
+    debounceTimeout = setTimeout(async () => {
+        removeElements();
+        
+        if (INPUT.value.length < 4) {
+            return;
+        }
+        
+        const URL = `https://gateway.marvel.com:443/v1/public/characters?nameStartsWith=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`;
+        const RESPONSE = await fetch(URL);
+        const JSONDATA = await RESPONSE.json();
+
+        JSONDATA.data['results'].forEach((r) => {
+            let name = r.name;
+            let div = document.createElement('div');
+            div.style.cursor = 'pointer';
+            div.classList.add('marvelAutoCompleteItems');
+            div.setAttribute('onclick', 'displayWords("' + name + '")');
+            let word = '<strong>' + name.substr(0, INPUT.value.length) + '</strong>';
+            word += name.substr(INPUT.value.length);
+            div.innerHTML = `
+                <p class='marvelItem'>${word}</p>
+            `;
+            MARVELLIST.appendChild(div);
+        });
+    }, 300);
+});
 
 BUTTON.addEventListener(
     'click',
