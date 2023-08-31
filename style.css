@@ -1,5 +1,5 @@
 *{
-    border: 1px dashed black;
+    /* border: 1px dashed black; */
 }
 body{
     background-color:peachpuff;
@@ -20,6 +20,7 @@ body{
     padding: 3px;
 }
 .marvelInputBox {
+    border: 1px solid black;
     display: block;
     float: left;
     height: 70%;
@@ -28,6 +29,7 @@ body{
     background-color: grey;
 }
 .marvelButton {
+    border: 1px solid black;
     display: block;
     float: right;
     height: 80%;

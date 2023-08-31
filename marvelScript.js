@@ -3,7 +3,7 @@ const BUTTON = document.getElementById('marvelButton')
 const MARVELDISPLAYCONTAINER = document.getElementById('marvelDisplayContainer')
 const MARVELCARDCONTAINER = document.getElementById('marvelCardContainer')
 const MARVELCOMICSCONTAINER = document.getElementById('marvelComicsContainer')
-const MARVELLIST = document.getElementById('marvelList')
+const MARVELSEARCHLIST = document.getElementById('marvelSearchList')
 const TIMESTAMP = '1693330665170'
 const PUBLICKEY = '691b8c03ff6ba103c4ceecb6814e6c07'
 const HASHVALUE = '8ca2582c55219e5864e4448bc9922299'
@@ -46,7 +46,7 @@ INPUT.addEventListener('input', () => {
             div.innerHTML = `
                 <p class='marvelItem'>${word}</p>
             `;
-            MARVELLIST.appendChild(div);
+            MARVELSEARCHLIST.appendChild(div);
         });
     }, 300);
 });
