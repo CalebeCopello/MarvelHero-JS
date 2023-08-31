@@ -37,6 +37,8 @@ INPUT.addEventListener('input', () => {
         const JSONDATA = await RESPONSE.json()
 
         JSONDATA.data['results'].forEach((r) => {
+            //TODO:filter search using comics, series, stories, events
+            console.log(r.name, r.description, r.thumbnail, r.comics.available, r.series.available, r.stories.available, r.events.available)
             let name = r.name
             let div = document.createElement('div')
             div.style.cursor = 'pointer'
@@ -49,7 +51,7 @@ INPUT.addEventListener('input', () => {
             `
             MARVELSEARCHLIST.appendChild(div)
         })
-    }, 300)
+    }, 1000)
 })
 
 BUTTON.addEventListener(
@@ -92,7 +94,9 @@ BUTTON.addEventListener(
                             <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" />
                         </div>
                         <div class="marvelComic${i+1}Back">
-                            back comic 1
+                            <p class="marvelComicP">Title: ${JSONDATAFIRSTCOMIC.data.results[i].title}</p>
+                            <p class="marvelComicP">Issue: ${JSONDATAFIRSTCOMIC.data.results[i].issueNumber}</p>
+                            <p class="marvelComicP">Description: ${JSONDATAFIRSTCOMIC.data.results[i].description}</p>
                         </div>
                     </div>
                 </div>

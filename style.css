@@ -90,6 +90,15 @@ body{
     position: relative;
     width: block;
 }
+.marvelHeroName{
+    padding: 5px;
+    text-align: center;
+}
+.marvelHeroDesc{
+    padding: 10px;
+    text-align: justify;
+    overflow: auto;
+}
 .marvelComicsContainer{
     display: flex;
     gap: 15px;
@@ -146,7 +155,11 @@ body{
 .marvelComic3Back{
     background-color: rgba(0, 0, 0, 0.75);
     color: white;
+    overflow: auto;
     transform: rotateY(180deg);
+}
+.marvelComicP {
+    padding: 3px;
 }
 @media only screen and (max-width: 630px) {
     .marvelHeroContainer{
