@@ -1,7 +1,8 @@
 const INPUT = document.getElementById('marvelInputBox')
 const BUTTON = document.getElementById('marvelButton')
-const MARVELDISPLAYCONTAINER = document.getElementById('marvelDisplayContainer')
-const MARVELCARDCONTAINER = document.getElementById('marvelCardContainer')
+const MARVELHEROIMG = document.getElementById('marvelHeroImg')
+const MARVELHERONAME = document.getElementById('marvelHeroName')
+const MARVELHERODESC = document.getElementById('marvelHeroDesc')
 const MARVELCOMICSCONTAINER = document.getElementById('marvelComicsContainer')
 const MARVELSEARCHLIST = document.getElementById('marvelSearchList')
 const TIMESTAMP = '1693330665170'
@@ -57,7 +58,6 @@ BUTTON.addEventListener(
         if (INPUT.value.trim().length < 1) {
             alert("A procura não pode ser nula!")
         }
-        MARVELCARDCONTAINER.innerHTML = ''
         let url = `https://gateway.marvel.com:443/v1/public/characters?name=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
         let response = await fetch(url)
         const JSONDATACHAR = await response.json()
@@ -71,16 +71,14 @@ BUTTON.addEventListener(
         JSONDATACHAR.data['results'].forEach((e) => {
             let description = e.description
             if(description == '') description = 'Description not found.'
-            MARVELCARDCONTAINER.innerHTML = `
-                <div class="marvelCharacterImageContainer">
+            MARVELHEROIMG.innerHTML = `
                     <img src="${e.thumbnail['path'] + '.' + e.thumbnail['extension']}" />
-                </div>
-                <div class="marvelCharacterName">
+                    `
+            MARVELHERONAME.innerHTML = `
                     ${e.name}
-                </div>
-                <div class="marvelCharacterDescription">
+                    `
+            MARVELHERODESC.innerHTML = `
                 ${description}
-            </div>
             `
         })
         // console.log(Object.keys(JSONDATAFIRSTCOMIC.data.results).length)
@@ -88,9 +86,16 @@ BUTTON.addEventListener(
         MARVELCOMICSCONTAINER.innerHTML = ''
         for(i = 0; i < Object.keys(JSONDATAFIRSTCOMIC.data.results).length; i++) {
             MARVELCOMICSCONTAINER.innerHTML += `
-            <div class='marvelComicsDisplay${i}'>
-            <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" />
-            </div>
+                <div class="marvelComic${i+1}">
+                    <div class="marvelComic${i+1}Inner">
+                        <div class="marvelComic${i+1}Front">
+                            <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" />
+                        </div>
+                        <div class="marvelComic${i+1}Back">
+                            back comic 1
+                        </div>
+                    </div>
+                </div>
             `
         }
     })
@@ -98,3 +103,4 @@ BUTTON.addEventListener(
 window.onload = () => {
     getResults()
 }
+{/* <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" /> */}
