@@ -88,10 +88,20 @@ body{
     color: black;
 }
 .marvelComicsContainer{
+    display: flex;
     padding: 1em;
+    gap: 15px;
+    height: 180px;
+    margin: 5px;
 }
 .marvelComicsDisplay0, .marvelComicsDisplay1,.marvelComicsDisplay2{
     display: inline-block;
-    background-color: antiquewhite;
-    margin: 10px;
+    width: 30%;
+    background-color: gray;
+    margin: 5px;
+}
+.marvelComicsDisplay0 img, .marvelComicsDisplay1 img,.marvelComicsDisplay2 img{
+    width: 100%;
+    position: relative;
+    width: block;
 }
