@@ -1,3 +1,4 @@
+//constants
 const INPUT = document.getElementById('marvelInputBox')
 const BUTTON = document.getElementById('marvelButton')
 const MARVELHEROIMG = document.getElementById('marvelHeroImg')
@@ -8,6 +9,11 @@ const MARVELSEARCHLIST = document.getElementById('marvelSearchList')
 const TIMESTAMP = '1693330665170'
 const PUBLICKEY = '691b8c03ff6ba103c4ceecb6814e6c07'
 const HASHVALUE = '8ca2582c55219e5864e4448bc9922299'
+
+//variables
+let timer
+let description = ''
+let thumbnail = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
 
 function displayWords(value) {
     INPUT.value = value
@@ -20,12 +26,11 @@ function removeElements() {
         item.remove()
     })
 }
-let debounceTimeout
 
 INPUT.addEventListener('input', () => {
-    clearTimeout(debounceTimeout)
+    clearTimeout(timer)
     
-    debounceTimeout = setTimeout(async () => {
+    timer = setTimeout(async () => {
         removeElements()
         
         if (INPUT.value.length < 3) {
@@ -38,18 +43,22 @@ INPUT.addEventListener('input', () => {
 
         JSONDATA.data['results'].forEach((r) => {
             //TODO:filter search using comics, series, stories, events
-            console.log(r.name, r.description, r.thumbnail, r.comics.available, r.series.available, r.stories.available, r.events.available)
-            let name = r.name
-            let div = document.createElement('div')
-            div.style.cursor = 'pointer'
-            div.classList.add('marvelAutoCompleteItems')
-            div.setAttribute('onclick', 'displayWords("' + name + '")')
-            let word = '<strong>' + name.substr(0, INPUT.value.length) + '</strong>'
-            word += name.substr(INPUT.value.length)
-            div.innerHTML = `
-                <p class='marvelSearchItem'>${word}</p>
-            `
-            MARVELSEARCHLIST.appendChild(div)
+            if (r.description == description && r.thumbnail.path == thumbnail && r.comics.available === 0) {
+                return false
+            } else { 
+                console.log('added: ' + r.name + ' comics: ' + typeof(r.comics.available), r.comics.available, typeof(0))
+                let div = document.createElement('div')
+                div.style.cursor = 'pointer'
+                div.classList.add('marvelAutoCompleteItems')
+                div.setAttribute('onclick', 'displayWords("' + r.name + '")')
+                let word = '<strong>' + r.name.substr(0, INPUT.value.length) + '</strong>'
+                word += r.name.substr(INPUT.value.length)
+                div.innerHTML = `
+                    <span class='marvelSearchItem'>${word}</span>
+                    <img src="${r.thumbnail['path'] + '.' + r.thumbnail['extension']}" height='20' width='20' class='marvelSearchImg'/>
+                `
+                MARVELSEARCHLIST.appendChild(div)
+            }
         })
     }, 1000)
 })

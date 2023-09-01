@@ -50,11 +50,14 @@ body{
     z-index: 1;
 }
 .marvelAutoCompleteItems {
-    padding: 0.5em;
+    padding: 0.2em;
 }
 .marvelAutoCompleteItems:hover {
     background-color: white;
     color: black;
+}
+.marvelSearchImg{
+    float: right;
 }
 .marvelDisplayContainer{
     display: flex;
