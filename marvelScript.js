@@ -95,8 +95,6 @@ BUTTON.addEventListener(
                 ${description}
             `
         })
-        //TODO:draw the comic covers without anything if it's = 0
-        // console.log(Object.keys(JSONDATAFIRSTCOMIC.data.results).length)
         let issues = 0
         MARVELCOMICSCONTAINER.innerHTML = ''
         for(i = 0; i < Object.keys(JSONDATAFIRSTCOMIC.data.results).length; i++) {
@@ -137,17 +135,16 @@ BUTTON.addEventListener(
                 <div class="marvelComic${issues+1}">
                     <div class="marvelComic${issues+1}Inner">
                         <div class="marvelComic${issues+1}Front">
-                            No comic avaiable!
+                            <span class='marvelNoComic'> No comic avaiable! <span>
                         </div>
                         <div class="marvelComic${issues+1}Back">
-                            No comic avaiable!
+                            <span class='marvelNoComic'> No comic avaiable! <span>
                         </div>
                     </div>
                 </div>
             `
             issues++
         }
-        console.log(issues)
     })
 )
 window.onload = () => {
