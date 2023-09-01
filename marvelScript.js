@@ -14,10 +14,14 @@ const HASHVALUE = '8ca2582c55219e5864e4448bc9922299'
 let timer
 let description = ''
 let thumbnail = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available'
+let comicTitle
+let comicIssue
+let comicDescription
 
 function displayWords(value) {
     INPUT.value = value
     removeElements()
+    getResults()
 }
 
 function removeElements() {
@@ -46,7 +50,6 @@ INPUT.addEventListener('input', () => {
             if (r.description == description && r.thumbnail.path == thumbnail && r.comics.available === 0) {
                 return false
             } else { 
-                console.log('added: ' + r.name + ' comics: ' + typeof(r.comics.available), r.comics.available, typeof(0))
                 let div = document.createElement('div')
                 div.style.cursor = 'pointer'
                 div.classList.add('marvelAutoCompleteItems')
@@ -79,11 +82,11 @@ BUTTON.addEventListener(
         const JSONDATAFIRSTCOMIC = await response.json()
         // console.log(JSONDATAFIRSTCOMIC.data['results'])
 
-        JSONDATACHAR.data['results'].forEach((e) => {
+        JSONDATACHAR.data.results.forEach((e) => {
             let description = e.description
-            if(description == '') description = 'Description not found.'
+            if(description == '') description = 'No description available.'
             MARVELHEROIMG.innerHTML = `
-                    <img src="${e.thumbnail['path'] + '.' + e.thumbnail['extension']}" />
+                    <img src="${e.thumbnail.path + '.' + e.thumbnail.extension}" />
                     `
             MARVELHERONAME.innerHTML = `
                     ${e.name}
@@ -92,10 +95,28 @@ BUTTON.addEventListener(
                 ${description}
             `
         })
-        // console.log(Object.keys(JSONDATAFIRSTCOMIC.data.results).length)
+        //TODO:draw the comic covers without anything if it's = 0
+        console.log(Object.keys(JSONDATAFIRSTCOMIC.data.results).length)
+
         
         MARVELCOMICSCONTAINER.innerHTML = ''
         for(i = 0; i < Object.keys(JSONDATAFIRSTCOMIC.data.results).length; i++) {
+            if (JSONDATAFIRSTCOMIC.data.results[i].title == '') { 
+                comicTitle = 'No title'
+            } else {
+                comicTitle = JSONDATAFIRSTCOMIC.data.results[i].title
+            }
+            if (JSONDATAFIRSTCOMIC.data.results[i].issueNumber == 0) {
+                comicIssue = 'Unknown'
+            } else {
+                comicIssue = JSONDATAFIRSTCOMIC.data.results[i].issueNumber
+            }
+            if (JSONDATAFIRSTCOMIC.data.results[i].description == null) {
+                comicDescription = 'Not avaiable'
+            } else {
+                comicDescription = JSONDATAFIRSTCOMIC.data.results[i].description
+            }
+            
             MARVELCOMICSCONTAINER.innerHTML += `
                 <div class="marvelComic${i+1}">
                     <div class="marvelComic${i+1}Inner">
@@ -103,9 +124,9 @@ BUTTON.addEventListener(
                             <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" />
                         </div>
                         <div class="marvelComic${i+1}Back">
-                            <p class="marvelComicP">Title: ${JSONDATAFIRSTCOMIC.data.results[i].title}</p>
-                            <p class="marvelComicP">Issue: ${JSONDATAFIRSTCOMIC.data.results[i].issueNumber}</p>
-                            <p class="marvelComicP">Description: ${JSONDATAFIRSTCOMIC.data.results[i].description}</p>
+                            <p class="marvelComicP">Title: ${comicTitle}</p>
+                            <p class="marvelComicP">Issue: ${comicIssue}</p>
+                            <p class="marvelComicP">Description: ${comicDescription}</p>
                         </div>
                     </div>
                 </div>
