@@ -1,45 +1,97 @@
 *{
-    /* border: 1px dashed black; */
+
+    /* setting variables */
+    /**Common colors**/
+    --red0: #cc241d;
+    --green0: #98971a;
+    --yellow0: #d79921;
+    --blue0: #458588;
+    --purple0: #b16286;
+    --aqua0: #689d6a;
+    --gray0: #928374;
+    --gray1: #928374;
+    --orange0: #d65d0e;
+
+    /**Mode**/
+    --bg0_h: #1d2021;
+    --bg0: #282828;
+    --bg1: #3c3836;
+    --bg2: #504945;
+    --bg3: #665c54;
+    --bg4: #7c6f64;
+    --bg0_s: #32302f;
+    --bgD: #282828;
+    --fg0: #fbf1c7;
+    --fg1: #ebdbb2;
+    --fg2: #d5c4a1;
+    --fg3: #bdae93;
+    --fg4: #a89984;
+    --fgD: #ebdbb2;
+    --gray3: #a89984;
+    --red1: #fb4934;
+    --green1: #b8bb26;
+    --yellow1: #fabd2f;
+    --blue1: #83a598;
+    --purple1: #d3869b;
+    --aqua1: #8ec07c;
+    --orange1: #fe8019;
+    /* ~~~ */
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 body{
-    background-color:peachpuff;
+    background-color:var(--red1);
 }
 .marvelHeroContainer{
     padding: 5px;
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    background-color: aquamarine;
     width: 600px;
     height: 620px;
     top: 1em;
+    background-color: var(--bg0_s);
+    border-radius: 10px;
 }
 .marvelInputHeroContainer{
-    background-color: orange;
     height: 40px;
     margin: 5px;
     padding: 3px;
+    background-color: var(--fgD);
+    border-radius: 3px;
 }
 .marvelInputBox {
-    border: 1px solid black;
     display: block;
     float: left;
     height: 70%;
     width: 80%;
     margin: 5px;
-    background-color: grey;
+    padding: 1px 5px 1px 5px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+    background-color: var(--bgD);
+    color: white;
 }
 .marvelButton {
-    border: 1px solid black;
     display: block;
     float: right;
     height: 80%;
     width: 15%;
-    margin: 5px;
-    background-color: grey;
+    margin: 3px;
+    margin-right: 7px;
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.4);
+    background-color: var(--gray3);
+}
+.marvelButton:active {
+    transition: transform 0.05s;
+    transform: scale(0.95,0.95);
+    background-color: var(--gray0);
+    box-shadow: 1px 1px rgba(0, 0, 0, 0.4);
+
 }
 .marvelSearchList {
     position: absolute;
@@ -167,6 +219,7 @@ body{
 }
 .marvelNoComic {
     align-self: center;
+    margin: 5px;
 }
 @media only screen and (max-width: 630px) {
     .marvelHeroContainer{
