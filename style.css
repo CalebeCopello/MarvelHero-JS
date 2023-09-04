@@ -95,8 +95,10 @@ body{
 }
 .marvelSearchList {
     position: absolute;
-    width: 63%;
-    background-color: grey;
+    width: 76%;
+    margin-left: 16px;
+    margin-top: -10px;
+    background-color: var(--bg0_s);
     color: white;
     overflow-y: scroll;
     z-index: 1;
@@ -105,39 +107,51 @@ body{
     padding: 0.2em;
 }
 .marvelAutoCompleteItems:hover {
-    background-color: white;
+    background-color: var(--fg0);
     color: black;
+}
+.marvelSearchItem {
+    display: inline-block;
+    width: 90%;
 }
 .marvelSearchImg{
     float: right;
+    border: 1px solid var(--fg3);
 }
 .marvelDisplayContainer{
     display: flex;
     gap: 15px;
     height: 250px;
-    background-color: orange;
+    background-color: var(--bg0_s);
     margin: 5px;
 }
 .marvelCardContainer{
     height: 94%;
     width: 98%;
-    background-color: greenyellow;
     padding: 3px;
     margin: 5px;
+    background-color: var(--fgD);
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 .marvelHeroInfo{
     display: block;
     float: left;
     width: 65%;
     height: 100%;
-    background-color: orange;
+    border: 3px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 .marvelHeroImg{
     display: block;
     float: right;
     width: 30%;
     height: 100%;
-    background-color: orange;
+    border: 3px solid black;
+    border-radius: 3px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.2);
 }
 .marvelHeroImg img{
     width: 100%;
@@ -152,7 +166,8 @@ body{
 .marvelHeroDesc{
     padding: 10px;
     text-align: justify;
-    overflow: auto;
+    overflow: scroll;
+    height: 80%;
 }
 .marvelComicsText {
     color: white;
@@ -163,16 +178,22 @@ body{
     gap: 15px;
     height: 300px;
     margin: 5px;
-    background-color: orange;
+    background-color: var(--fgD);
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 .marvelComic1,
 .marvelComic2,
 .marvelComic3 {
     width: 30%;
-    background-color: gray;
     margin: 5px;
     transition: transform 0.2s ease-in-out;
     perspective: 1000px;/* flip, make it 3d*/
+    background-color: var(--red1);
+    border: 1px solid black;
+    border-radius: 3px;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.2);
 }
 .marvelComic1Inner,
 .marvelComic2Inner,
@@ -210,6 +231,12 @@ body{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;  
 }
+.marvelComic1Front,
+.marvelComic2Front,
+.marvelComic3Front{
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+}
 .marvelComic1Back,
 .marvelComic2Back,
 .marvelComic3Back{
@@ -236,7 +263,12 @@ body{
     .marvelInputBox, .marvelButton{
         width: 90%;
         height: 20px;
+        margin-left: 13px;
         float: none;
+    }
+    .marvelSearchList {
+        width: 85%;
+        margin-left: 18px;
     }
     .marvelDisplayContainer{
         height: 46%;

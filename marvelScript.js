@@ -46,7 +46,6 @@ INPUT.addEventListener('input', () => {
         const JSONDATA = await RESPONSE.json()
 
         JSONDATA.data['results'].forEach((r) => {
-            //TODO:filter search using comics, series, stories, events
             if (r.description == description && r.thumbnail.path == thumbnail && r.comics.available === 0) {
                 return false
             } else { 
@@ -70,7 +69,7 @@ BUTTON.addEventListener(
     'click',
     (getResults = async () =>{
         if (INPUT.value.trim().length < 1) {
-            alert("A procura não pode ser nula!")
+            alert("There must be an input!")
         }
         let url = `https://gateway.marvel.com:443/v1/public/characters?name=${INPUT.value}&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
         let response = await fetch(url)
@@ -80,11 +79,10 @@ BUTTON.addEventListener(
         url = `https://gateway.marvel.com:443/v1/public/characters/${ID}/comics?dateRange=1900-01-01%2C2013-01-02&orderBy=onsaleDate&limit=3&ts=${TIMESTAMP}&apikey=${PUBLICKEY}&hash=${HASHVALUE}`
         response = await fetch(url)
         const JSONDATAFIRSTCOMIC = await response.json()
-        // console.log(JSONDATAFIRSTCOMIC.data['results'])
 
         JSONDATACHAR.data.results.forEach((e) => {
             let description = e.description
-            if(description == '') description = 'No description available.'
+            if(description == '' || description == ' ') description = 'No description available.'
             MARVELHEROIMG.innerHTML = `
                     <img src="${e.thumbnail.path + '.' + e.thumbnail.extension}" />
                     `
@@ -150,4 +148,3 @@ BUTTON.addEventListener(
 window.onload = () => {
     getResults()
 }
-{/* <img src="${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.path}.${JSONDATAFIRSTCOMIC.data.results[i].thumbnail.extension}" /> */}
